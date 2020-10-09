@@ -1,0 +1,64 @@
+project.ext {
+    support = "1.0.0"
+    constraintlayout = "2.0.0-alpha2"
+    arch = "2.0.0"
+    retrofit = "2.0.2"
+    constraintLayout = "1.0.2"
+    dagger_version = "2.15"
+}
+
+
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.aysenur.mvvmsampleapp"
+        minSdkVersion 27
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.google.android.material:material:$project.support"
+    implementation "androidx.appcompat:appcompat:$project.support"
+    implementation "androidx.cardview:cardview:$project.support"
+    implementation "androidx.recyclerview:recyclerview:$project.support"
+    implementation "androidx.constraintlayout:constraintlayout:$project.constraintlayout"
+    implementation "androidx.legacy:legacy-support-v4:$project.support"
+
+    // Arch
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$project.arch"
+    implementation "androidx.lifecycle:lifecycle-runtime:$project.arch"
+    implementation "androidx.lifecycle:lifecycle-extensions:$project.arch"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$project.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$project.retrofit"
+
+    // Dagger
+    annotationProcessor "com.google.dagger:dagger-android-processor:$dagger_version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation "com.google.dagger:dagger:$project.dagger_version"
+    implementation "com.google.dagger:dagger-android:$project.dagger_version"
+    implementation "com.google.dagger:dagger-android-support:$project.dagger_version"
+
+    testImplementation 'junit:junit:4.12'
+}
