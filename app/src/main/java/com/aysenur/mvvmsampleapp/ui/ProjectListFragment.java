@@ -21,6 +21,7 @@ public class ProjectListFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         final ProjectListViewModel viewModel= ViewModelProviders.of(this).get(ProjectListViewModel.class);
 
+        observeViewModel(viewModel);
 
     }
 
@@ -31,7 +32,7 @@ public class ProjectListFragment extends Fragment {
             @Override
             public void onChanged(List<Project> projects) {
                 if (projects !=null){
-
+                    projectAdapter.setProjectList(projects);
 
                 }
             }
