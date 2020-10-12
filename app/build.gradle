@@ -4,7 +4,7 @@ project.ext {
     arch = "2.0.0"
     retrofit = "2.0.2"
     constraintLayout = "1.0.2"
-    dagger_version = "2.15"
+    dagger_version = "2.11"
 }
 
 
