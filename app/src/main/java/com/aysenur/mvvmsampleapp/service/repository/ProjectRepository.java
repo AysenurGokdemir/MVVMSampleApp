@@ -34,4 +34,38 @@ public class ProjectRepository {
         });
         return data;
     }
+
+    //project detail
+
+    public LiveData<Project> getProjectDetails(String userID, String projectName){
+
+        final MutableLiveData<Project> data =  new MutableLiveData<>();
+
+        githubService.getProjectDetails(userID, projectName).enqueue(new Callback<Project>() {
+            @Override
+            public void onResponse(Call<Project> call, Response<Project> response) {
+                simulateDelay();
+                data.setValue(response.body());
+            }
+
+
+            @Override
+            public void onFailure(Call<Project> call, Throwable t) {
+
+                data.setValue(null);
+            }
+        });
+        return data;
+    }
+    private void simulateDelay() {
+
+        try {
+            Thread.sleep(10);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+
+        }
+
+    }
+
 }
