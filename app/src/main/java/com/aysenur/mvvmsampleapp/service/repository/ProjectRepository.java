@@ -4,6 +4,8 @@ import com.aysenur.mvvmsampleapp.service.model.Project;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import retrofit2.Call;
@@ -18,6 +20,11 @@ public class ProjectRepository {
 
     private GithubService githubService;
 
+    @Inject
+    public ProjectRepository(GithubService githubService) {
+        this.githubService = githubService;
+
+    }
     public LiveData<List<Project>> getProjectList(String userId){
         final MutableLiveData<List<Project>> data = new MutableLiveData<>();
 
