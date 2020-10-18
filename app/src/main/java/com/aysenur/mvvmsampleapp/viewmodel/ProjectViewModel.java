@@ -27,7 +27,13 @@ public class ProjectViewModel extends AndroidViewModel {
 
     public ObservableField<Project> project= new ObservableField<>();
 
-
+    /***
+     * Aşağıdaki kod parçacığı, hem Application hem de ProjectRepository örneklerinin enjekte edilmesi için
+     * @inject annotation kullanan ProjectViewModel'den bir örneği gösterir.
+     *
+     * @param projectRepository
+     * @param application
+     */
     @Inject
     public ProjectViewModel(@NonNull ProjectRepository projectRepository, @NonNull Application application) {
         super(application);
@@ -43,5 +49,17 @@ public class ProjectViewModel extends AndroidViewModel {
 
             return projectRepository.getProjectDetails("Google", projectID.getValue());
         });
+    }
+
+    public LiveData<Project> getObservableProject() {
+        return projectObservable;
+    }
+
+    public void setProject(Project project) {
+        this.project.set(project);
+    }
+
+    public void setProjectID(String projectID) {
+        this.projectID.setValue(projectID);
     }
 }
